@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formas de Pago - Carnicería Pochito</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+  <nav class="bg-red-600 px-6 py-4 text-white">
+    <a href="{{ url_for('index') }}" class="underline">⬅ Volver</a>
+  </nav>
+
+  <section class="flex flex-col items-center justify-center flex-grow text-center p-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Formas de Pago</h1>
+    <div class="flex justify-center gap-10 text-lg">
+      <div class="text-center">💳 <p>Tarjeta</p></div>
+      <div class="text-center">📱 <p>Yape / Plin</p></div>
+      <div class="text-center">💵 <p>Efectivo</p></div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white py-4 text-center">
+    &copy; {{ year }} Carnicería Pochito
+  </footer>
+
+</body>
+</html>
