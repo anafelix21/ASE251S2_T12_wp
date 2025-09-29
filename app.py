@@ -18,9 +18,9 @@ def login():
 def pago():
     return render_template('pago.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
-    
 @app.route('/categorias')
 def categorias():
     return render_template('categorias.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
