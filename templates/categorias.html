@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Categorías - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6 text-center">Nuestras Categorías</h2>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  <!-- Tipos de Carnes -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <h3 class="text-lg font-bold mb-4">Tipos de Carnes</h3>
+    
+    <div class="mb-4">
+      <h4 class="text-md font-semibold">Carne de Res</h4>
+      <img src="{{url_for('static, filename= image/pollo.jpg') }}"
+           alt="Carne de Res" class="mx-auto rounded-lg mb-4">
+    </div>
+    
+    <div class="mb-4">
+      <h4 class="text-md font-semibold">Carne de Pollo</h4>
+      <img src="{{ url_for('static', filename='image/pollo.jpg') }}" 
+           alt="Carne de Pollo" class="mx-auto rounded-lg mb-4">
+    </div>
+    
+    <div class="mb-4">
+      <h4 class="text-md font-semibold">Carne de Cerdo</h4>
+      <img src="{{ url_for('static', filename='image/cerdo.jpg') }}" 
+           alt="Carne de Cerdo" class="mx-auto rounded-lg mb-4">
+    </div>
+  </div>
+
+  <!-- Utensilios -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <h3 class="text-lg font-bold mb-4">Utensilios</h3>
+    
+    <div class="mb-4">
+      <h4 class="text-md font-semibold">Cuchillo</h4>
+      <img src="{{ url_for('static', filename='image/cuchillo.jpg') }}" 
+           alt="Cuchillo" class="mx-auto rounded-lg mb-4">
+    </div>
+    
+    <div class="mb-4">
+      <h4 class="text-md font-semibold">Tenedor</h4>
+      <img src="{{ url_for('static', filename='image/tenedor.jpg') }}" 
+           alt="Tenedor" class="mx-auto rounded-lg mb-4">
+    </div>
+    
+    <div class="mb-4">
+      <h4 class="text-md font-semibold">Sartén</h4>
+      <img src="{{ url_for('static', filename='image/sarten.jpg') }}" 
+           alt="Sartén" class="mx-auto rounded-lg mb-4">
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

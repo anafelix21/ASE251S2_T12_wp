@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Productos - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6 text-center">Nuestros Productos</h2>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  <!-- Producto 1 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/malaya.jpg') }}" 
+         alt="Malaya" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Malaya</h3>
+    <p class="text-gray-600">S/. 30.00 / Kg</p>
+    <button onclick="agregarAlCarrito(1, 'Malaya', 30)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 2 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/falda.jpg') }}" 
+         alt="Falda" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Falda</h3>
+    <p class="text-gray-600">S/. 22.00 / Kg</p>
+    <button onclick="agregarAlCarrito(2, 'Falda', 22)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 3 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/aguja.jpg') }}" 
+         alt="Aguja" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Aguja</h3>
+    <p class="text-gray-600">S/. 24.00 / Kg</p>
+    <button onclick="agregarAlCarrito(3, 'Aguja', 24)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 4 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/lomo.jpg') }}" 
+         alt="Lomo" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Lomo</h3>
+    <p class="text-gray-600">S/. 35.00 / Kg</p>
+    <button onclick="agregarAlCarrito(4, 'Lomo', 35)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 5 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/costilla.jpg') }}" 
+         alt="Costilla" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Costilla</h3>
+    <p class="text-gray-600">S/. 28.00 / Kg</p>
+    <button onclick="agregarAlCarrito(5, 'Costilla', 28)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 6 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/pecho.jpg') }}" 
+         alt="Pecho" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Pecho</h3>
+    <p class="text-gray-600">S/. 20.00 / Kg</p>
+    <button onclick="agregarAlCarrito(6, 'Pecho', 20)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 7 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/cadera.jpg') }}" 
+         alt="Cadera" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Cadera</h3>
+    <p class="text-gray-600">S/. 26.00 / Kg</p>
+    <button onclick="agregarAlCarrito(7, 'Cadera', 26)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 8 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/bisteck.webp') }}" 
+         alt="Bisteck" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Bisteck</h3>
+    <p class="text-gray-600">S/. 27.00 / Kg</p>
+    <button onclick="agregarAlCarrito(8, 'Bisteck', 27)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+  <!-- Producto 9 -->
+  <div class="bg-white rounded-xl shadow-md p-4 text-center">
+    <img src="{{ url_for('static', filename='image/huachalomo.jpg') }}" 
+         alt="Huachalomo" class="mx-auto rounded-lg mb-4">
+    <h3 class="text-lg font-bold">Huachalomo</h3>
+    <p class="text-gray-600">S/. 23.00 / Kg</p>
+    <button onclick="agregarAlCarrito(9, 'Huachalomo', 23)" 
+            class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800">
+      Agregar al carrito
+    </button>
+  </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+
+{% endblock %}

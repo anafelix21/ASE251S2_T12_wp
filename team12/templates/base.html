@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Carnicería Pochito{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-red-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Carnicería Pochito</h1>
+    <nav class="space-x-4 flex items-center">
+
+      <a href="{{ url_for('index') }}" class="hover:underline">Inicio</a>
+      <a href="{{ url_for('productos') }}" class="hover:underline">Productos</a>
+
+      <!-- Categorías con menú desplegable -->
+      <div class="relative group inline-block">
+        <button class="hover:underline">Categorías ▼</button>
+        <div class="absolute hidden group-hover:block bg-white text-black shadow-lg rounded mt-2 z-50">
+          <a href="{{ url_for('categorias') }}" class="block px-4 py-2 hover:bg-gray-200">Tipos de Carnes</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-200">Carne de Res</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-200">Carne de Pollo</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-200">Carne de Cerdo</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-200">Carne de Cordero</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-200">Otras carnes rojas</a>
+        </div>
+      </div>
+
+      <a href="{{ url_for('login') }}" class="hover:underline">Login</a>
+
+      <!-- Botón Carrito -->
+      <button onclick="toggleCarrito()" class="ml-4 bg-white text-red-700 px-3 py-1 rounded hover:bg-gray-200">
+        🛒 Carrito
+      </button>
+    </nav>
+  </header>
+
+  <!-- Contenido dinámico -->
+  <main class="p-6">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-red-700 text-white text-center p-4 mt-10">
+    <p>&copy; 2025 Carnicería Pochito. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Sidebar Carrito -->
+  <div id="sidebar-carrito" 
+       class="fixed top-0 right-0 w-80 h-full bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50">
+    <div class="p-4 flex justify-between items-center border-b">
+      <h2 class="text-xl font-bold">Tu Carrito</h2>
+      <button onclick="toggleCarrito()" class="text-red-600 text-lg">✖</button>
+    </div>
+    <div id="carrito-lista" class="p-4 overflow-y-auto h-[calc(100%-100px)]">
+      <p class="text-gray-500">El carrito está vacío.</p>
+    </div>
+    <div class="p-4 border-t">
+      <a href="{{ url_for('pago') }}" 
+         class="w-full inline-block text-center bg-green-600 text-white py-2 rounded hover:bg-green-800">
+         Ir a pagar
+      </a>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+  <script>
+    function toggleCarrito() {
+      const sidebar = document.getElementById("sidebar-carrito");
+      sidebar.classList.toggle("translate-x-full");
+    }
+  </script>
+</body>
+</html>

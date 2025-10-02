@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Inicio - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<section class="text-center py-10">
+  <h2 class="text-3xl font-bold">¡Bienvenido a la mejor carne de la ciudad!</h2>
+  <p class="mt-2 text-gray-700">Compra fresca y recibe en tu casa.</p>
+  <a href="{{ url_for('productos') }}" 
+     class="mt-4 inline-block bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800">
+     Ver productos
+  </a>
+</section>
+
+<!-- Carrusel de productos -->
+<div class="relative w-full max-w-2xl mx-auto mt-10"> <!-- reducido max-w -->
+  <!-- Imágenes -->
+  <div class="overflow-hidden rounded-xl shadow-lg">
+    <div id="carrusel" class="flex transition-transform duration-500">
+      <img src="{{ url_for('static', filename='image/falda.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Falda de res">
+      <img src="{{ url_for('static', filename='image/aguja.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Aguja de res">
+      <img src="{{ url_for('static', filename='image/lomo.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Lomo fino">
+      <img src="{{ url_for('static', filename='image/costilla.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Costilla fresca">
+      <img src="{{ url_for('static', filename='image/pecho.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Pecho de res">
+      <img src="{{ url_for('static', filename='image/cadera.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Cadera de res">
+      <img src="{{ url_for('static', filename='image/malaya.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Malaya">
+      <img src="{{ url_for('static', filename='image/bisteck.webp') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Bisteck">
+      <img src="{{ url_for('static', filename='image/huachalomo.jpg') }}" class="w-full h-64 object-cover flex-shrink-0" alt="Huachalomo">
+    </div>
+  </div>
+
+  <!-- Botón Izquierda -->
+  <button onclick="moverCarrusel(-1)" 
+          class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-red-700 text-white px-3 py-2 rounded-r hover:bg-red-900">
+    ◀
+  </button>
+
+  <!-- Botón Derecha -->
+  <button onclick="moverCarrusel(1)" 
+          class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-700 text-white px-3 py-2 rounded-l hover:bg-red-900">
+    ▶
+  </button>
+</div>
+
+<script>
+  let index = 0;
+  const carrusel = document.getElementById("carrusel");
+  const total = carrusel.children.length;
+
+  function moverCarrusel(direccion) {
+    index = (index + direccion + total) % total;
+    carrusel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  // Cambio automático cada 5s
+  setInterval(() => moverCarrusel(1), 5000);
+</script>
+
+{% endblock %}

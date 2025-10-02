@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Categorías - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6 text-center">Nuestras Categorías</h2>
+
+<div class="flex flex-col items-center gap-6">
+
+  <!-- Tipos de Carnes -->
+  <div class="bg-white rounded-xl shadow-md w-full max-w-5xl p-4">
+    <button onclick="toggleDropdown('carnes')" 
+            class="w-full text-left text-lg font-bold mb-2 focus:outline-none">
+      Tipos de Carnes ▼
+    </button>
+    <div id="carnes" class="hidden flex justify-center gap-x-6 mt-2">
+      <div class="text-center">
+        <h4 class="text-md font-semibold">Carne de Res</h4>
+        <img src="{{ url_for('static', filename='image/res.jpg') }}" 
+             alt="Carne de Res" class="mx-auto rounded-lg mb-2 w-32 h-32 object-cover">
+      </div>
+      <div class="text-center">
+        <h4 class="text-md font-semibold">Carne de Pollo</h4>
+        <img src="{{ url_for('static', filename='image/pollo.jpg') }}" 
+             alt="Carne de Pollo" class="mx-auto rounded-lg mb-2 w-32 h-32 object-cover">
+      </div>
+      <div class="text-center">
+        <h4 class="text-md font-semibold">Carne de Cerdo</h4>
+        <img src="{{ url_for('static', filename='image/cerdo.jpg') }}" 
+             alt="Carne de Cerdo" class="mx-auto rounded-lg mb-2 w-32 h-32 object-cover">
+      </div>
+    </div>
+  </div>
+
+  <!-- Utensilios -->
+  <div class="bg-white rounded-xl shadow-md w-full max-w-5xl p-4">
+    <button onclick="toggleDropdown('utensilios')" 
+            class="w-full text-left text-lg font-bold mb-2 focus:outline-none">
+      Utensilios ▼
+    </button>
+    <div id="utensilios" class="hidden flex justify-center gap-x-6 mt-2">
+      <div class="text-center">
+        <h4 class="text-md font-semibold">Cuchillo</h4>
+        <img src="{{ url_for('static', filename='image/cuchillo.jpg') }}" 
+             alt="Cuchillo" class="mx-auto rounded-lg mb-2 w-32 h-32 object-cover">
+      </div>
+      <div class="text-center">
+        <h4 class="text-md font-semibold">Tenedor</h4>
+        <img src="{{ url_for('static', filename='image/tenedor.jpg') }}" 
+             alt="Tenedor" class="mx-auto rounded-lg mb-2 w-32 h-32 object-cover">
+      </div>
+      <div class="text-center">
+        <h4 class="text-md font-semibold">Sartén</h4>
+        <img src="{{ url_for('static', filename='image/sarten.jpg') }}" 
+             alt="Sartén" class="mx-auto rounded-lg mb-2 w-32 h-32 object-cover">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleDropdown(id) {
+    const div = document.getElementById(id);
+    div.classList.toggle('hidden');
+  }
+</script>
+
+{% endblock %}
