@@ -1,133 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Carnicería Pochito{% endblock %}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Carnicería Pochito{% endblock %}</title>
+
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="bg-gray-100 flex flex-col min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <h1 class="text-2xl font-extrabold text-red-700">POCHITO</h1>
-      <nav class="space-x-6 flex items-center">
-        <a href="{{ url_for('index') }}" class="hover:text-red-600 font-medium">Tipos de carnes</a>
-        <a href="{{ url_for('productos') }}" class="hover:text-red-600 font-medium">Todos para asar</a>
-        <a href="{{ url_for('nosotros') }}" class="hover:text-red-600 font-medium">Más de nosotros</a>
-        <!-- Carrito -->
-        <button onclick="toggleCarrito()" class="ml-4 flex items-center bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
-          🛒 <span class="ml-2">Carrito</span>
-        </button>
-      </nav>
-    </div>
-  </header>
+    <header class="bg-gray-900 shadow-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center text-white">
+            <a href="{{ url_for('index') }}" class="text-2xl font-bold text-red-500">POCHITO</a>
+            
+            <div class="flex space-x-4 sm:space-x-6 items-center text-sm sm:text-base">
+                <a href="{{ url_for('index') }}" class="hover:text-red-500 transition duration-300">Inicio</a>
+                
+                <div class="relative group">
+                    <button class="flex items-center hover:text-red-500 transition duration-300 focus:outline-none">
+                        Tipos de Carne
+                        <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-300 ease-in-out origin-top-right">
+                        <div class="py-1">
+                            <a href="{{ url_for('productos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Carne de Res / Vacuno</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Carne de Cerdo</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600">Carne de pollo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="hover:text-red-500 transition duration-300 hidden sm:inline">Todo para Asar</a>
+                <a href="{{ url_for('pagos') }}" class="hover:text-red-500 transition duration-300 hidden sm:inline">Métodos de Pago</a>
+                <a href="{{ url_for('carrito') }}" class="hover:text-red-500 transition duration-300">Carrito 🛒</a>
+                <a href="{{ url_for('login') }}" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition">Login</a>
+            </div>
+        </nav>
+    </header>
 
-  <!-- Hero -->
-  <section class="relative bg-gray-900">
-    <img src="{{ url_for('static', filename='img/banner_carnes.jpg') }}" 
-         alt="Carnicería" class="w-full h-72 object-cover opacity-70">
-    <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-      <h2 class="text-4xl font-extrabold">POCHITO</h2>
-      <a href="{{ url_for('productos') }}" 
-         class="mt-4 px-6 py-2 bg-red-600 rounded-lg hover:bg-red-700">VER PRODUCTOS</a>
-    </div>
-  </section>
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
 
-  <!-- Productos destacados -->
-  <main class="max-w-7xl mx-auto px-6 py-12">
-    <h3 class="text-2xl font-bold text-center mb-8">Nuestros cortes más pedidos</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {% for producto in productos %}
-      <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center">
-        <img src="{{ url_for('static', filename='img/' + producto.imagen) }}" 
-             alt="{{ producto.nombre }}" class="w-40 h-32 object-cover rounded">
-        <h4 class="mt-4 text-lg font-semibold">{{ producto.nombre }}</h4>
-        <button onclick="agregarCarrito('{{ producto.id }}')" 
-                class="mt-3 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-          Agregar al carrito
-        </button>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="text-center mt-10">
-      <a href="{{ url_for('productos') }}" 
-         class="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900">VER TODOS</a>
-    </div>
-  </main>
-
-  <!-- Sección destacados -->
-  <section class="bg-gradient-to-r from-gray-100 to-gray-200 py-12">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
-      <div>
-        <img src="{{ url_for('static', filename='img/lomo_fino.jpg') }}" class="mx-auto rounded-full w-40 h-40 object-cover">
-        <h4 class="mt-4 font-semibold text-lg">Lomo fino / Solomillo</h4>
-      </div>
-      <div>
-        <img src="{{ url_for('static', filename='img/lomo_ancho.jpg') }}" class="mx-auto rounded-full w-40 h-40 object-cover">
-        <h4 class="mt-4 font-semibold text-lg">Lomo ancho / Bife de chorizo</h4>
-      </div>
-      <div>
-        <img src="{{ url_for('static', filename='img/costillar.jpg') }}" class="mx-auto rounded-full w-40 h-40 object-cover">
-        <h4 class="mt-4 font-semibold text-lg">Costillar / Asado de tira</h4>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-200 py-10 mt-12">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-      <!-- Horarios -->
-      <div>
-        <h5 class="font-bold mb-3">HORARIOS</h5>
-        <ul class="space-y-1 text-sm">
-          <li>Lun-Sáb: 7:00 - 19:00</li>
-          <li>Dom: 8:00 - 13:00</li>
-        </ul>
-      </div>
-      <!-- Productos -->
-      <div>
-        <h5 class="font-bold mb-3">PRODUCTOS</h5>
-        <ul class="space-y-1 text-sm">
-          <li>Cortes parrilleros</li>
-          <li>Bifes y lomos</li>
-          <li>Asados y más</li>
-        </ul>
-      </div>
-      <!-- Contacto -->
-      <div>
-        <h5 class="font-bold mb-3">CONTACTO</h5>
-        <p class="text-sm">📞 900000000</p>
-        <p class="text-sm">📍 Av. Los Ganaderos</p>
-        <p class="text-sm">📩 contacto@pochito.com</p>
-      </div>
-    </div>
-    <p class="text-center text-xs text-gray-400 mt-6">&copy; 2025 Carnicería Pochito. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- Sidebar Carrito -->
-  <div id="sidebar-carrito" 
-       class="fixed top-0 right-0 w-80 h-full bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50">
-    <div class="p-4 flex justify-between items-center border-b">
-      <h2 class="text-xl font-bold">Tu Carrito</h2>
-      <button onclick="toggleCarrito()" class="text-red-600 text-lg">✖</button>
-    </div>
-    <div id="carrito-lista" class="p-4 overflow-y-auto h-[calc(100%-100px)]">
-      <p class="text-gray-500">El carrito está vacío.</p>
-    </div>
-    <div class="p-4 border-t">
-      <a href="{{ url_for('pago') }}" 
-         class="w-full inline-block text-center bg-green-600 text-white py-2 rounded hover:bg-green-800">
-         Ir a pagar
-      </a>
-    </div>
-  </div>
-
-  <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
-  <script>
-    function toggleCarrito() {
-      document.getElementById("sidebar-carrito").classList.toggle("translate-x-full");
-    }
-  </script>
+    <footer class="bg-gray-900 text-white py-4 text-center mt-auto">
+        &copy; {{ year }} Carnicería Pochito
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
